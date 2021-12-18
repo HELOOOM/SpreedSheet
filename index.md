@@ -157,7 +157,7 @@ Creating the labels for the status bar
     currentFile =nullptr;
     setWindowTitle("Buffel");
 ```
-## Functions
+# Functions
 
 
 Now, let's impliment our previous functions
