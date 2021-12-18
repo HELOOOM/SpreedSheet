@@ -14,3 +14,6 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
 - Two tools bars
 - Status bar to print the informations
 
+### **the application look like that:**
+
+![IMAGE]()
