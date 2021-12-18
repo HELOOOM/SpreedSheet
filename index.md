@@ -16,4 +16,6 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
 
 ### **the application look like that:**
 
-![IMAGE]()
+![IMAGE](Spreedsheet.png)
+
+### **To result with such a functional application you have to go through multiple functions, slots, actions and methods (But don't worry we will explain the functionality and role of each part of our code)** 
