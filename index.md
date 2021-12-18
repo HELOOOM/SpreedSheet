@@ -318,6 +318,9 @@ void SpreadSheet::updateStatusBar(int row, int col)
    cellLocation->setText(cell.arg(row+1).arg(col+1));
 }
 ```
+Example Result:
+
+![Image](statut.png)
 
 
 
