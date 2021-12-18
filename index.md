@@ -290,12 +290,34 @@ FileMenu->addAction(exit);
     helpMenu->addAction(aboutQt);
 }
 ```
-- ****
+- **createToolBars()**
+
+This functions create a toolBar using `auto toolbar1 = addToolBar("Item")` and we can Add actions to this bar using `toolbar1->addAction(Item)`  However, the toolbar has an advantage as it gives a single click access to any function unlike a menu system where the user has to navigate through sub-menus to ultimate discover the item he is looking for. ; Both provide easy access to commands and functions through easy graphical interface.
 ```c++
-
+void SpreadSheet::createToolBars()
+{
+    //Crer une bare d'outils
+    auto toolbar1 = addToolBar("File");
+    //Ajouter des actions acette bar
+    toolbar1->addAction(newFile);
+    toolbar1->addAction(save);
+    toolbar1->addSeparator();
+    toolbar1->addAction(exit);
+    //Creer une autre tool bar
+    auto toolbar2  = addToolBar("ToolS");
+    toolbar2->addAction(goCell);
+}
 ```
-- ****
+- **updateStatusBar(int row, int col)**
 
+This function just make an update in the statutbar when you select difrent cell.
+```c++
+void SpreadSheet::updateStatusBar(int row, int col)
+{
+    QString cell{"(%0, %1)"};
+   cellLocation->setText(cell.arg(row+1).arg(col+1));
+}
+```
 
 
 
