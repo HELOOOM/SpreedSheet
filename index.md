@@ -51,10 +51,17 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
    - [Slots implementation](#slots-implementation)
    
      - [cuts](#cuts)
-     - [Example](#example)
-     - [Example](#example)
-     - [Example](#example)
-     - [Example](#example)
+     - [copys](#copys)
+     - [pasts](#pasts)
+     - [close](#close)
+     - [saveContent](#savecontent)
+     - [saveSlot](#saveslot)
+     - [loadSlot](#loadslot)
+     - [openrecent](#openrecent)
+     - [goToCellSlot](#gotocellslot)
+     - [goFind](#gofind)
+     - [loadContent](#loadcontent)
+     - [loadcsv](#loadcsv)
 
 
 
