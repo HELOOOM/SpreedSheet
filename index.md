@@ -33,7 +33,9 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
  - [SpreedSheet CPP](#spreedsheet-cpp)
  
    - [Functions](#functions)
-
+   
+   - [setupMainWidget()](#setupmainwidget)
+   
 
 ## SpreedSheet Header
 
@@ -164,7 +166,8 @@ Creating the labels for the status bar
 
 
 Now, let's impliment our previous functions
-- **setupMainWidget()**
+
+## **setupMainWidget()**
 ```c++
 void SpreadSheet::setupMainWidget()
 {
@@ -174,7 +177,7 @@ void SpreadSheet::setupMainWidget()
     setCentralWidget(spreadsheet);
 }
 ```
-- **createActions()**
+## **createActions()**
 
 In this function we create each action using `ExampleAction = new QAction(ExampleIcone, "&New", this)` and we added icons for this actions using `QPixmap newExample(":/new_file.png")` also we can add shortCut using `ExampleFile->setShortcut(tr("Ctrl+ex"))`
 
@@ -248,7 +251,7 @@ void SpreadSheet::createActions()
    exit->setShortcut(tr("Ctrl+Q"));
 }
 ```
-- **createMenus()**
+## **createMenus()**
 
 here we add Menu (File,Edit,Toosl,Optins,Help) By using `ExampleMenu = menuBar()->addMenu("&Example");` and in each menu we can add Actions using `ExampleMenu->addAction(Example);`
 ```c++
@@ -290,7 +293,7 @@ FileMenu->addAction(exit);
     helpMenu->addAction(aboutQt);
 }
 ```
-- **createToolBars()**
+## **createToolBars()**
 
 This functions create a toolBar using `auto toolbar1 = addToolBar("Item")` and we can Add actions to this bar using `toolbar1->addAction(Item)`  However, the toolbar has an advantage as it gives a single click access to any function unlike a menu system where the user has to navigate through sub-menus to ultimate discover the item he is looking for. ; Both provide easy access to commands and functions through easy graphical interface.
 ```c++
@@ -308,7 +311,7 @@ void SpreadSheet::createToolBars()
     toolbar2->addAction(goCell);
 }
 ```
-- **updateStatusBar(int row, int col)**
+## **updateStatusBar(int row, int col)**
 
 This function just make an update in the statutbar when you select difrent cell.
 ```c++
@@ -322,7 +325,7 @@ Example Result:
 
 ![Image](sta.jpg)
 
-- **makeConnexions()**
+## **makeConnexions()**
 
 This functions is for connection actions whith their Slots
 
