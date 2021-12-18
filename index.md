@@ -36,6 +36,21 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
    
    - [setupMainWidget()](#setupmainwidget)
    
+   - [createActions()](#createactions)
+   
+   - [createMenus()](#createmenus)
+
+   - [createToolBars()](#createtoolbars)
+   
+   - [updateStatusBar](#updatestatusbar)
+
+
+
+
+
+
+
+ 
 
 ## SpreedSheet Header
 
@@ -311,7 +326,7 @@ void SpreadSheet::createToolBars()
     toolbar2->addAction(goCell);
 }
 ```
-## **updateStatusBar(int row, int col)**
+## **updateStatusBar**
 
 This function just make an update in the statutbar when you select difrent cell.
 ```c++
