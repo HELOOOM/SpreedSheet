@@ -25,7 +25,8 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
 - ## [SpreedSheet Header](#spreedsheet-header)
    - ### [Protected Functions](#protected-functions)
    - ### [Private Slots](#private-slots)
-
+   - ### [Pointers](#pointers)
+- ## [SpreedSheet CPP](#spreedsheet-cpp)
 
 
 ## SpreedSheet Header
@@ -77,3 +78,44 @@ private slots:
     void loadSlot();
  //Pointers
 ```
+## Pointers
+
+```c++
+private:
+    // --------------- Central Widget -------------//
+    QTableWidget *spreadsheet;
+    // --------------- Actions       --------------//
+    QAction * newFile;
+    QAction * open;
+    QAction * save;
+    QAction * saveAs;
+    QAction * exit;
+    QAction *cut;
+    QAction *copy;
+    QAction *paste;
+    QAction *deleteAction;
+    QAction *find;
+    QAction *row;
+    QAction *Column;
+    QAction *all;
+    QAction *goCell;
+    QAction *recalculate;
+    QAction *sort;
+    QAction *showGrid;
+    QAction *auto_recalculate;
+    QAction *about;
+    QAction *aboutQt;
+    QString * currentFile;
+    // ---------- Menus ----------
+    QMenu *FileMenu;
+    QMenu *editMenu;
+    QMenu *toolsMenu;
+    QMenu *optionsMenu;
+    QMenu *helpMenu;
+    //  ----- - Widget pouyr la bare d'etat
+    QLabel *cellLocation;  //position de la cellule active
+    QLabel *cellFormula;   // Formuel de la cellule active
+};
+#endif // SPREADSHEET_H
+```
+## SpreedSheet CPP
