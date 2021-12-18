@@ -320,7 +320,7 @@ void SpreadSheet::updateStatusBar(int row, int col)
 ```
 Example Result:
 
-![Image](statut.png)
+![Image](sta.jpg)
 
 
 
