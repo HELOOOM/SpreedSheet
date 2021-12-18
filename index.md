@@ -43,6 +43,8 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
    - [createToolBars()](#createtoolbars)
    
    - [updateStatusBar](#updatestatusbar)
+   
+     - [Example](#example)
 
 
 
@@ -336,7 +338,7 @@ void SpreadSheet::updateStatusBar(int row, int col)
    cellLocation->setText(cell.arg(row+1).arg(col+1));
 }
 ```
-Example Result:
+## Example
 
 ![Image](sta.jpg)
 
