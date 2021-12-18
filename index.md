@@ -176,87 +176,110 @@ void SpreadSheet::createActions()
    QPixmap newIcon(":/new_file.png");
    newFile = new QAction(newIcon, "&New", this);
    newFile->setShortcut(tr("Ctrl+N"));
-
-
     // --------- open file -------------------
    QPixmap openIcon(":/open.png");
    open = new QAction(openIcon,"&Open", this);
    open->setShortcut(tr("Ctrl+O"));
-
     // --------- save file -------------------
    QPixmap saveIcon(":/save.png");
-
    save = new QAction(saveIcon,"&Save", this);
    save->setShortcut(tr("Ctrl+S"));
-
     // --------- save file -------------------
     QPixmap saveasIcon(":/saveas.png");
    saveAs = new QAction(saveasIcon,"save &As", this);
-
-
     // --------- cut file -------------------
    QPixmap cutIcon(":/cut_icon.png");
    cut = new QAction(cutIcon, "Cu&t", this);
    cut->setShortcut(tr("Ctrl+X"));
-
    // --------- Copy menu -----------------
    QPixmap copyIcon(":/copy.png");
-
    copy = new QAction(copyIcon, "&Copy", this);
    copy->setShortcut(tr("Ctrl+C"));
-
+   // --------- paste menu -----------------
    QPixmap pasteIcon(":/paste.png");
-
    paste = new QAction( pasteIcon,"&Paste", this);
    paste->setShortcut(tr("Ctrl+V"));
-
+   // --------- delete menu -----------------
    QPixmap deleteIcon(":/delete.png");
    deleteAction = new QAction( deleteIcon,"&delete", this);
    deleteAction->setShortcut(tr("Del"));
-
+   // --------- Row , Column -----------------
    row  = new QAction("&Row", this);
    Column = new QAction("&Column", this);
+   // --------- all menu -----------------
    all = new QAction("&All", this);
    all->setShortcut(tr("Ctrl+A"));
-
+   // --------- find -----------------
    QPixmap findIcon(":/search_icon.png"); find= new QAction(findIcon, "&Find", this);
    find->setShortcut(tr("Ctrl+F"));
-
+   // --------- goCell -----------------
    QPixmap goCellIcon(":/go_to_icon.png");
    goCell = new QAction( goCellIcon, "&Go to Cell", this);
    deleteAction->setShortcut(tr("f5"));
-
-
+   // --------- recalculate -----------------
    recalculate = new QAction("&Recalculate",this);
    recalculate->setShortcut(tr("F9"));
-
-
+ 
    sort = new QAction("&Sort");
-
-
-
+   
+   // --------- showGrid -----------------
    showGrid = new QAction("&Show Grid");
    showGrid->setCheckable(true);
    showGrid->setChecked(spreadsheet->showGrid());
-
+   // --------- auto-recalculate -----------------
    auto_recalculate = new QAction("&Auto-recalculate");
    auto_recalculate->setCheckable(true);
    auto_recalculate->setChecked(true);
-
-
-
+   // --------- about -----------------
    about =  new QAction("&About");
    aboutQt = new QAction("About &Qt");
-
     // --------- exit -------------------
    QPixmap exitIcon(":/quit_icon.png");
    exit = new QAction(exitIcon,"E&xit", this);
    exit->setShortcut(tr("Ctrl+Q"));
 }
 ```
-- ****
-```c++
+- **createMenus()**
 
+here we add Menu (File,Edit,Toosl,Optins,Help) By using `ExampleMenu = menuBar()->addMenu("&Example");` and in each menu we can add Actions using `ExampleMenu->addAction(Example);`
+```c++
+void SpreadSheet::createMenus()
+{
+    // --------  File menu -------//
+    FileMenu = menuBar()->addMenu("&File");
+    FileMenu->addAction(newFile);
+    FileMenu->addAction(open);
+    FileMenu->addAction(save);
+    FileMenu->addAction(saveAs);
+     recent = FileMenu->addMenu("&Recent File");
+       FileMenu->addSeparator();
+FileMenu->addAction(exit);
+    //------------- Edit menu --------/
+    editMenu = menuBar()->addMenu("&Edit");
+    editMenu->addAction(cut);
+    editMenu->addAction(copy);
+    editMenu->addAction(paste);
+    editMenu->addAction(deleteAction);
+    editMenu->addSeparator();
+    auto select = editMenu->addMenu("&Select");
+    select->addAction(row);
+    select->addAction(Column);
+    select->addAction(all);
+    editMenu->addAction(find);
+    editMenu->addAction(goCell);
+    //-------------- Toosl menu ------------
+    toolsMenu = menuBar()->addMenu("&Tools");
+    toolsMenu->addAction(recalculate);
+    toolsMenu->addAction(sort);
+    //Optins menus
+    optionsMenu = menuBar()->addMenu("&Options");
+    optionsMenu->addAction(showGrid);
+    optionsMenu->addAction(auto_recalculate);
+    //----------- Help menu ------------
+    helpMenu = menuBar()->addMenu("&Help");
+    helpMenu->addAction(about);
+    helpMenu->addAction(aboutQt);
+}
 ```
 - ****
 ```c++
