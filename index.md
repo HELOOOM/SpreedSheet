@@ -21,77 +21,59 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
 ### **To result with such a functional application you have to go through multiple functions, slots, actions and methods (But don't worry we will explain the functionality and role of each part of our code)** 
 
 # Summary
-[SpreedSheet Header](#spreedsheet-header)
+
+- [SpreedSheet Header](#spreedsheet-header)
+   - [Protected Functions](#protected-functions)
+   - [Private Slots](#private-slots)
 
 
-A
-A
 
-A
-A
+## SpreedSheet Header
 
-A
-A
+```c++
+#ifndef SPREADSHEET_H
+#define SPREADSHEET_H
 
-AA
-A
+#include <QMainWindow>
+#include <QTableWidget>
+#include <QAction>
+#include <QMenu>
+#include <QToolBar>
+#include <QLabel>
+#include <QStatusBar>
 
-A
-A
+class SpreadSheet : public QMainWindow
+{
+    Q_OBJECT
 
-A
+public:
+    SpreadSheet(QWidget *parent = nullptr);
+    ~SpreadSheet();
+```
 
+## Protected Functions
 
-A
+```c++
+protected:
+    void setupMainWidget();
+    void createActions();
+    void createMenus();
+    void createToolBars();
+    void makeConnexions();
+    void saveContent(QString file) const;
+    void loadContent(QString filename) const;
+```
 
-A
+## Private Slots
 
-
-A
-
-A
-
-
-A
-
-
-A
-
-A
-A
-
-
-A
-
-
-# SpreedSheet Header
-
-A
-
-
-A
-
-
-A
-
-A
-
-A
-
-
-A
-
-
-A
-
-A
-
-A
-
-
-A
-
-
-A
-
-Av
+```c++
+private slots:
+    void close();
+    void updateStatusBar(int, int); //Respond for the call changed
+    void goToCellSlot();
+    void goFind();
+    void saveSlot();             //Slot to save the content of the file
+//    void openSlot();
+    void loadSlot();
+ //Pointers
+```
