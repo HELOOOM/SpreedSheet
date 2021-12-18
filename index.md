@@ -322,7 +322,271 @@ Example Result:
 
 ![Image](sta.jpg)
 
+- **makeConnexions()**
+
+This functions is for connection actions whith their Slots
+
+```c++
+void SpreadSheet::makeConnexions()
+{
+   // --------- Connexion for the  select all action ----/
+   connect(all, &QAction::triggered,
+           spreadsheet, &QTableWidget::selectAll);
+   connect(row, &QAction::triggered,
+           spreadsheet, &QTableWidget::selectRow);
+   connect(Column, &QAction::triggered,
+           spreadsheet, &QTableWidget::selectColumn);
+   // Connection for the  show grid
+   connect(showGrid, &QAction::triggered,
+           spreadsheet, &QTableWidget::setShowGrid);
+   //Connection for the exit button
+   connect(exit, &QAction::triggered, this, &SpreadSheet::close);
+   //connectting the chane of any element in the spreadsheet with the update status bar
+   connect(spreadsheet, &QTableWidget::cellClicked, this,  &SpreadSheet::updateStatusBar);
+   connect(goCell,&QAction::triggered,this,&SpreadSheet::goToCellSlot);
+   connect(find,&QAction::triggered,this,&SpreadSheet::goFind);
+   connect(save, &QAction::triggered, this, &SpreadSheet::saveSlot);
+   connect(open, &QAction::triggered, this, &SpreadSheet::loadSlot);
+   connect(cut, &QAction ::triggered, this, &SpreadSheet::cuts);
+   connect(copy, &QAction ::triggered, this, &SpreadSheet::copys);
+   connect(paste, &QAction ::triggered, this, &SpreadSheet::pasts);
+}
+```
+
+## Slots implementation 
+
+- cuts
+```c++
+void SpreadSheet::cuts()
+{
+    // get the last child widget which has focus and
+    // try to cast it as line edit
+    QLineEdit* lineEdit = dynamic_cast<QLineEdit*>(focusWidget());
+    if (lineEdit)
+    {
+        // it was a line edit, perform copy
+        lineEdit->cut();
+    }
+}
+```
+
+- copys
+```c++
+void SpreadSheet::copys()
+{
+    // get the last child widget which has focus and
+    // try to cast it as line edit
+    QLineEdit* lineEdit = dynamic_cast<QLineEdit*>(focusWidget());
+    if (lineEdit)
+    {
+        // it was a line edit, perform copy
+        lineEdit->copy();
+    }
+}
+```
+
+
+- pasts
+```c++
+void SpreadSheet::pasts()
+{
+    // get the last child widget which has focus and
+    // try to cast it as line edit
+    QLineEdit* lineEdit = dynamic_cast<QLineEdit*>(focusWidget());
+    if (lineEdit)
+    {
+        // it was a line edit, perform copy
+        lineEdit->paste();
+    }
+}
+```
+
+
+- close
+```c++
+void SpreadSheet::close()
+{
+    auto reply = QMessageBox::question(this, "Exit",
+                                       "Do you really want to quit?");
+    if(reply == QMessageBox::Yes)
+        qApp->exit();
+}
+```
 
 
 
+- saveContent
+```c++
+void SpreadSheet::saveContent(QString filename) const
+{
+    //Gettign a pointer on the file
+    QFile file(filename);
+    //Openign the file
+    if(file.open(QIODevice::WriteOnly))  //Opening the file in writing mode
+    {
+        //Initiating a stream using the file
+        QTextStream out(&file);
+        //loop to save all the content
+        for(int i=0; i < spreadsheet->rowCount();i++)
+            for(int j=0; j < spreadsheet->columnCount(); j++)
+            {
+auto cell =spreadsheet->item(i,j);
+                //Cecking if the cell is non empty
+                if(cell)
+                out << cell->row() << ", "<< cell->column() << ", " << cell->text() << Qt::endl;
+            }
+    }
+    file.close();
+}
+```
 
+
+- saveSlot
+```c++
+void SpreadSheet::saveSlot()
+{
+    //Creating a file dialog to choose a file graphically
+    auto dialog = new QFileDialog(this);
+    //Check if the current file has a name or not
+    if(currentFile == "")
+    {
+      currentFile = dialog->getSaveFileName(this,"choose your file");
+       //Update the window title with the file name
+       setWindowTitle(currentFile);
+    }
+   //If we have a name simply save the content
+   if( currentFile != "")
+   {
+           saveContent(currentFile);
+   }
+}
+```
+
+- loadSlot
+```c++
+void SpreadSheet::loadSlot()
+{
+    //Creating a file dialog to choose a file graphically
+    QFileDialog l ;
+    currentFile= l.getOpenFileName();
+      setWindowTitle(currentFile);
+      if (currentFile.endsWith(".csv"))
+      loadcsv(currentFile);
+      else loadContent(currentFile);
+      if(i<5){
+              recentlist.append(new QAction(currentFile,this));
+              recent->addAction(recentlist[i]);
+              connect(recentlist[i], &QAction::triggered, this, &SpreadSheet::openrecent);
+              i++;   }else{
+                  for (int j=0;j<4 ;j++ ) {
+                      recentlist[4-j]->setText(recentlist[3-j]->text());
+                  }
+                  recentlist[0]->setText(currentFile);
+              }
+}
+```
+
+- openrecent
+```c++
+void SpreadSheet::openrecent() {
+    // obtenir le fichier
+auto b = dynamic_cast<QAction*>(sender());
+    QFile file(b->text());
+    QString line;
+     if(file.open(QIODevice::ReadOnly))
+     {
+         QTextStream in(&file);
+         while( !in.atEnd())
+         {
+             line = in.readLine();
+             auto tokens = line.split(QChar(',') );
+             int row = tokens[0].toInt();
+             int col = tokens[1].toInt();
+             spreadsheet->setItem(row, col , new QTableWidgetItem(tokens[2]));
+         }
+     }
+     currentFile = (b->text());
+     // mettre a jour le titre de le fenetre
+     setWindowTitle(currentFile);
+     file.close();
+}
+```
+
+- goToCellSlot
+```c++
+void SpreadSheet::goToCellSlot(){
+//declare dialogue
+    gocelldialog D;
+    auto repl =D.exec();
+ if(repl==gocelldialog::Accepted)
+ {
+     auto text=D.getText();
+     int row =text[0].toLatin1() - 'A';
+     text = text.remove(0,1);
+     int col = text.toInt()-1;
+     spreadsheet->setCurrentCell(row,col);
+ }
+}
+```
+
+
+- goFind
+```c++
+void SpreadSheet::goFind(){
+godialog S;
+auto reply=S.exec();
+if(reply == godialog::Accepted){
+    auto text=S.getText();
+    for(auto i =0;i<spreadsheet->rowCount();i++){
+        for(auto j =0;j<spreadsheet->columnCount();j++){
+          if(spreadsheet-> item(i,j)!=nullptr && spreadsheet-> item(i,j)->text().contains(text) )
+              spreadsheet->setCurrentCell( i, j);
+       }
+    }
+  }
+}
+```
+
+- loadContent
+```c++
+void SpreadSheet::loadContent(QString filename){
+    QFile file(filename);
+    if (file.open(QIODevice::ReadOnly )) {
+        QTextStream in(&file);
+       // error message here
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        // now, line will be a string of the whole line, if you're trying to read a CSV or something, you can split the string
+        auto list = line.split(QChar(','));
+        // process the line here
+        int row =list[0].toInt();
+        int  col=list[1].toInt();
+       auto contenu=new  QTableWidgetItem (list[2]);
+        spreadsheet->setItem(row,col,contenu);
+       }
+    }
+ }
+```
+
+- loadcsv
+```c++
+void SpreadSheet::loadcsv(QString filename){
+    QFile file(filename);
+    if (file.open(QIODevice::ReadOnly )) {
+        QTextStream in(&file);
+       // error message here
+ int i=0;
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        // now, line will be a string of the whole line, if you're trying to read a CSV or something, you can split the string
+        auto list = line.split(QChar(';'));
+        // process the line here
+        for(int j=0;j<list.length();j++){
+            auto contenu=new  QTableWidgetItem (list[j]);
+             spreadsheet->setItem(i,j,contenu);
+        }
+        i++;
+    }
+  }
+}
+```
