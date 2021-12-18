@@ -45,7 +45,16 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
    - [updateStatusBar](#updatestatusbar)
    
      - [Example](#example)
-
+     
+   - [makeConnexions()](#makeconnexions)
+   
+   - [Slots implementation](#slots-implementation)
+   
+     - [cuts](#cuts)
+     - [Example](#example)
+     - [Example](#example)
+     - [Example](#example)
+     - [Example](#example)
 
 
 
@@ -375,7 +384,7 @@ void SpreadSheet::makeConnexions()
 
 ## Slots implementation 
 
-- cuts
+- ### cuts
 ```c++
 void SpreadSheet::cuts()
 {
@@ -390,7 +399,7 @@ void SpreadSheet::cuts()
 }
 ```
 
-- copys
+- ### copys
 ```c++
 void SpreadSheet::copys()
 {
@@ -406,7 +415,7 @@ void SpreadSheet::copys()
 ```
 
 
-- pasts
+- ### pasts
 ```c++
 void SpreadSheet::pasts()
 {
@@ -422,7 +431,7 @@ void SpreadSheet::pasts()
 ```
 
 
-- close
+- ### close
 ```c++
 void SpreadSheet::close()
 {
@@ -435,7 +444,7 @@ void SpreadSheet::close()
 
 
 
-- saveContent
+- ### saveContent
 ```c++
 void SpreadSheet::saveContent(QString filename) const
 {
@@ -461,7 +470,7 @@ auto cell =spreadsheet->item(i,j);
 ```
 
 
-- saveSlot
+- ### saveSlot
 ```c++
 void SpreadSheet::saveSlot()
 {
@@ -482,7 +491,7 @@ void SpreadSheet::saveSlot()
 }
 ```
 
-- loadSlot
+- ### loadSlot
 ```c++
 void SpreadSheet::loadSlot()
 {
@@ -506,7 +515,7 @@ void SpreadSheet::loadSlot()
 }
 ```
 
-- openrecent
+- ### openrecent
 ```c++
 void SpreadSheet::openrecent() {
     // obtenir le fichier
@@ -532,7 +541,7 @@ auto b = dynamic_cast<QAction*>(sender());
 }
 ```
 
-- goToCellSlot
+- ### goToCellSlot
 ```c++
 void SpreadSheet::goToCellSlot(){
 //declare dialogue
@@ -550,7 +559,7 @@ void SpreadSheet::goToCellSlot(){
 ```
 
 
-- goFind
+- ### goFind
 ```c++
 void SpreadSheet::goFind(){
 godialog S;
@@ -567,7 +576,7 @@ if(reply == godialog::Accepted){
 }
 ```
 
-- loadContent
+- ### loadContent
 ```c++
 void SpreadSheet::loadContent(QString filename){
     QFile file(filename);
@@ -588,7 +597,7 @@ void SpreadSheet::loadContent(QString filename){
  }
 ```
 
-- loadcsv
+- ### loadcsv
 ```c++
 void SpreadSheet::loadcsv(QString filename){
     QFile file(filename);
