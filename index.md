@@ -23,7 +23,9 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
 # Summary
 
 - ## [SpreedSheet Header](#spreedsheet-header)
+
    - ### [Protected Functions](#protected-functions)
+   
    - ### [Private Slots](#private-slots)
    - ### [Pointers](#pointers)
 - ## [SpreedSheet CPP](#spreedsheet-cpp)
