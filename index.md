@@ -27,6 +27,7 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
    - ### [Private Slots](#private-slots)
    - ### [Pointers](#pointers)
 - ## [SpreedSheet CPP](#spreedsheet-cpp)
+- ## [Functions](#functions)
 
 
 ## SpreedSheet Header
@@ -154,6 +155,9 @@ Creating the labels for the status bar
     currentFile =nullptr;
     setWindowTitle("Buffel");
 ```
+## Functions
+
+
 Now, let's impliment our previous functions
 - **setupMainWidget()**
 ```c++
