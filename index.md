@@ -554,6 +554,7 @@ auto b = dynamic_cast<QAction*>(sender());
      file.close();
 }
 ```
+![IMAGE](srecent.png)
 
 - ### goToCellSlot
 ```c++
@@ -590,6 +591,7 @@ if(reply == godialog::Accepted){
   }
 }
 ```
+![IMAGE](sfind.png)
 
 - ### loadContent
 ```c++
