@@ -16,11 +16,12 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
 
 ### **the application look like that:**
 
-![IMAGE](Spreedsheet.png)
+![IMAGE](sinterface.png)
 
 ### **To result with such a functional application you have to go through multiple functions, slots, actions and methods (But don't worry we will explain the functionality and role of each part of our code)** 
 
 # Summary
+- [Menu interfaces](#menu-interfaces)
 
 - [SpreedSheet Header](#spreedsheet-header)
  
@@ -62,10 +63,16 @@ Spreadsheets feature columns and rows to keep inserted information legible and s
      - [goFind](#gofind)
      - [loadContent](#loadcontent)
      - [loadcsv](#loadcsv)
+     - [Select Row](#select-row)
+     - [Select Column](#select-column)
 
 
-
-
+## Menu interfaces
+![IMAGE](sfile.png)
+![IMAGE](sedit.png)
+![IMAGE](stool.png)
+![IMAGE](soptions.png)
+![IMAGE](shelp.png)
 
 
  
@@ -626,3 +633,10 @@ void SpreadSheet::loadcsv(QString filename){
   }
 }
 ```
+- ### Select Row
+![IMAGE](selectcolum.png)
+
+- ### Select Column
+
+![IMAGE](selectrow.png)
+
