@@ -572,6 +572,7 @@ void SpreadSheet::goToCellSlot(){
 }
 ```
 
+[IMAGE](gotocell1.png)
 
 - ### goFind
 ```c++
