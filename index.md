@@ -2,6 +2,8 @@
 
 ## ` BY : Lakhmiri / Sakassa / Benzemroun`
 
+
+
 ## Introduction
 
 A spreadsheet is a grid composed of an indefinite number of rows and columns that cross to make cells where information is entered. Many people use spreadsheets because of their easy-to-operate functions. Spreadsheets once were known as worksheets used for educational and business purposes only. Today spreadsheets have been discovered also by moms making shopping lists and children creating Christmas wish lists.
